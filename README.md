@@ -14,6 +14,40 @@ Down below you'll find a modified copy of Bootstrap's documentation about the po
 The things modified reflect the behaviour of the popover as defined by the EmojiPopper Plugin.
 Demo's are removed since github doesn't support it.
 
+## Getting Started
+
+Link to the required and custom css files in the head section of your page.
+```html
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
+    crossorigin="anonymous"
+>
+<link rel="stylesheet" type="text/css" href="https://yourDomain/css/emojiPopper.min.css">
+```
+
+Add the required javascript files to the body section of your page. Preferably just before the closing tag.
+**Mind the order of the included scripts**:
+1. Jquery Library
+2. Popper Library
+3. Bootstrap Library
+4. EmojiPopper Library
+
+```html
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" 
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" 
+    crossorigin="anonymous">
+</script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" 
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" 
+    crossorigin="anonymous">
+</script>
+<script src="https://yourDomain/js/emojiPopper.min.js"></script>
+```
+
 ---
 ## Overview
 
@@ -138,7 +172,6 @@ Options can be passed via data attributes or JavaScript. For data attributes, ap
 
 > Note that for security reasons the `sanitize`, `sanitizeFn` and `whiteList` options cannot be supplied using data attributes.
 
-```html
 <table class="table table-bordered table-striped">
   <thead>
     <tr>
@@ -166,10 +199,11 @@ Options can be passed via data attributes or JavaScript. For data attributes, ap
     <tr>
       <td>content</td>
       <td>string | element | function</td>
-      <td>''</td>
+      <td>EmojoPopper Content</td>
       <td>
-        <p>Default content value if <code>data-content</code> attribute isn't present.</p>
-        <p>If a function is given, it will be called with its <code>this</code> reference set to the element that the popover is attached to.</p>
+        <p>~~Default content value if <code>data-content</code> attribute isn't present.~~</p>
+        <p>~~If a function is given, it will be called with its <code>this</code> reference set to the element that the popover is attached to.~~</p>
+        <p>Fixed value. The content is defined by the EmojiPopper Plugin and currently can't be overwritten.</p>
       </td>
     </tr>
     <tr>
@@ -185,8 +219,11 @@ Options can be passed via data attributes or JavaScript. For data attributes, ap
     <tr>
       <td>html</td>
       <td>boolean</td>
-      <td>false</td>
-      <td>Insert HTML into the popover. If false, <code>innerText</code> property will be used to insert content into the DOM. Use text if you're worried about XSS attacks.</td>
+      <td>~~false~~ true</td>
+      <td>
+        <p>~~Insert HTML into the popover. If false, <code>innerText</code> property will be used to insert content into the DOM. Use text if you're worried about XSS attacks.~~</p>
+        <p>The EmojiPopper plugin's content contains HTML. The value of this option is fixed top true.</p>
+      </td>
     </tr>
     <tr>
       <td>placement</td>
@@ -201,7 +238,7 @@ Options can be passed via data attributes or JavaScript. For data attributes, ap
       <td>selector</td>
       <td>string | false</td>
       <td>false</td>
-      <td>If a selector is provided, popover objects will be delegated to the specified targets. In practice, this is used to enable dynamic HTML content to have popovers added. See <a href="{{< param repo >}}/issues/4215">this</a> and <a href="https://codepen.io/Johann-S/pen/djJYPb">an informative example</a>.</td>
+      <td>If a selector is provided, popover objects will be delegated to the specified targets. In practice, this is used to enable dynamic HTML content to have popovers added. See <a href="https://github.com/twbs/bootstrap/issues/4215">this</a> and <a href="https://codepen.io/Johann-S/pen/djJYPb">an informative example</a>.</td>
     </tr>
     <tr>
       <td>template</td>
@@ -218,7 +255,7 @@ Options can be passed via data attributes or JavaScript. For data attributes, ap
     <tr>
       <td>title</td>
       <td>string | element | function</td>
-      <td>''</td>
+      <td>Pick an emoji...</td>
       <td>
         <p>Default title value if <code>title</code> attribute isn't present.</p>
         <p>If a function is given, it will be called with its <code>this</code> reference set to the element that the popover is attached to.</p>
@@ -252,13 +289,16 @@ Options can be passed via data attributes or JavaScript. For data attributes, ap
     <tr>
       <td>sanitize</td>
       <td>boolean</td>
-      <td>true</td>
-      <td>Enable or disable the sanitization. If activated <code>'template'</code>, <code>'content'</code> and <code>'title'</code> options will be sanitized.</td>
+      <td>~~true~~ false</td>
+      <td>
+        <p>~~Enable or disable the sanitization. If activated <code>'template'</code>, <code>'content'</code> and <code>'title'</code> options will be sanitized.~~</p>
+        <p>The EmojiPopper Plugin's content contains elements and attributes which are removed by popper when sanitization is enabled. Therefor this value is currently fixed to `false`</p>
+      </td>
     </tr>
     <tr>
       <td>whiteList</td>
       <td>object</td>
-      <td><a href="{{< docsref "/getting-started/javascript#sanitizer" >}}">Default value</a></td>
+      <td><a href="https://getbootstrap.com/docs/4.3/getting-started/javascript/#sanitizer">Default value</a></td>
       <td>Object which contains allowed attributes and tags</td>
     </tr>
     <tr>
@@ -267,9 +307,20 @@ Options can be passed via data attributes or JavaScript. For data attributes, ap
       <td>null</td>
       <td>Here you can supply your own sanitize function. This can be useful if you prefer to use a dedicated library to perform sanitization.</td>
     </tr>
+    <tr>
+      <td>autoClose</td>
+      <td>boolean</td>
+      <td>true</td>
+      <td>Defines wether the popper is closed ar stays open when selecting emoji.</td>
+    </tr>
+    <tr>
+      <td>storageType</td>
+      <td>string</td>
+      <td>localStorage | sessionStorage</td>
+      <td>The emoji's rendered in the popper, depends on data retrieved from a server. This data is stored locally by using the Web Storage API. `localStorage` stores the data across browser sessions while using `sessionStorage`, the data gets cleared when the page session ends — that is, when the page is closed.</td>
+    </tr>
   </tbody>
 </table>
-```
 
 > #### Data attributes for individual popovers
 >
