@@ -1,0 +1,7 @@
+@import '_colors.scss';
+
+div[data-type="emojiPopper"] {
+    span {
+        cursor: pointer;
+    }
+}
