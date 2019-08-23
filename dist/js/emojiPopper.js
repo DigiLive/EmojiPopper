@@ -69,7 +69,7 @@
             var groupName;
             var popperId = Math.random().toString(36).substr(2, 9);
             var content             = [
-                '<div class="accordion" id="' + popperId + '" data-type="emojiPopper">'
+                '<div class="accordion" id="emojiPopper' + popperId + '" data-type="emojiPopper">'
             ];
             var ariaExpandedValue   = "true";
             var show                = "show";
@@ -84,7 +84,7 @@
                     content.push(value.groupName);
                     content.push('</button></div>');
                     //Add Card Content
-                    content.push('<div id="collapse' + key + '" class="collapse '+ show +'" aria-labelledby="group' + key + '" data-parent="#emojiPopper">');
+                    content.push('<div id="collapse' + key + '" class="collapse '+ show +'" aria-labelledby="group' + key + '" data-parent="#emojiPopper' + popperId + '">');
                     content.push('<div class="card-body">');
                 }
                 //Add Card Body
@@ -103,7 +103,6 @@
         
         function initializeAfterData(data){
             popperContent = createContent(data);
-            console.log(popperContent);
             $(document).on("click", '[data-type="emojiPopper"] span', function(e) {
                 var maxLength;
                 var currentValue;
@@ -128,6 +127,9 @@
                     currentLength = Array.from(currentValue).length;
                     maxLength = Number(target.attr("maxlength"));
                     if (!isNaN(maxLength) && (maxLength < (currentLength + 1))) {
+                        if (settings.autoClose && (toggler !== "undefined")) {
+                            toggler.popover('hide');
+                        }
                         return false;
                     }
                     

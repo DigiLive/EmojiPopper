@@ -1,5 +1,5 @@
 # EmojiPopper Plugin
-EmojiPopper is a jQuery plugin selecting and inserting a native emoji character into HTML input elements or textarea's.
+EmojiPopper is a jQuery plugin to select and insert OS native emoji characters into HTML input elements or text area's.
 The plugin utilizes the popover component of Bootstrap 4.
 
 ## Requirements
@@ -63,8 +63,7 @@ The JSON response should be an array of elements, each containing at least the f
 The plugin stores the emoji data into the local storage of the web client by using the 
 [Web Storage API](https://developer.mozilla.org/nl/docs/Web/API/Web_Storage_API).
 
-If the data is found in the local storage, this data will be used. Otherwise it's requested from the source as defined
-as option `url`.
+If the data is found in the local storage, this data will be used. Otherwise it's requested from the source as defined by option `url`.
 
 > If the Web Storage API isn't available an error is shown in the console and the popper will **not** be initialized!
 
@@ -97,8 +96,8 @@ The extracted data is returned as a JSON formatted array to the client.
 Down below you'll find a modified copy of Bootstrap's documentation about the popover component which is utilized by 
 this plugin. The original documentation is found [here](https://getbootstrap.com/docs/4.3/components/popovers/).
 
-Modifications reflect the behaviour of the popover as defined by the EmojiPopper Plugin.
-Demo's from the orignal documentation are removed since githubs markdown renderer doesn't support it.
+Modifications reflect the behavior of the popover as defined by the EmojiPopper Plugin.
+Demo's from the original documentation are removed since github's markdown renderer doesn't support it.
 
 ---
 ## Overview
@@ -220,7 +219,7 @@ visual feedback to your users as they may not expect to _click_ on a disabled el
 > 
 > To allow keyboard users to activate your popovers, you should only add them to HTML elements that are traditionally keyboard-focusable and interactive (such as links or form controls). Although arbitrary HTML elements (such as `<span>`s) can be made focusable by adding the `tabindex="0"` attribute, this will add potentially annoying and confusing tab stops on non-interactive elements for keyboard users, and most assistive technologies currently do not announce the popover's content in this situation. Additionally, do not rely solely on `hover` as the trigger for your popovers, as this will make them impossible to trigger for keyboard users.
 > ~~While you can insert rich, structured HTML in popovers with the `html` option, we strongly recommend that you avoid adding an excessive amount of content. The way popovers currently work is that, once displayed, their content is tied to the trigger element with the `aria-describedby` attribute. As a result, the entirety of the popover's content will be announced to assistive technology users as one long, uninterrupted stream.~~
-> The binding of attribute `aria-describedby` is removed by the emojiPopper plugin when the show instance method is called. Instead a `aria-label` attribute is added to describe the popover, using the popover's title.
+> The binding of attribute `aria-describedby` is removed by the emojiPopper plugin when the show instance method is called. Instead, a `aria-label` attribute is added to describe the popover, using the popover's title.
 > 
 > Additionally, while it is possible to also include interactive controls (such as form elements or links) in your popover (by adding these elements to the `whiteList` or allowed attributes and tags), be aware that currently the popover does not manage keyboard focus order. When a keyboard user opens a popover, focus remains on the triggering element, and as the popover usually does not immediately follow the trigger in the document's structure, there is no guarantee that moving forward/pressing <kbd>TAB</kbd> will move a keyboard user into the popover itself. In short, simply adding interactive controls to a popover is likely to make these controls unreachable/unusable for keyboard users and users of assistive technologies, or at the very least make for an illogical overall focus order. In these cases, consider using a modal dialog instead.
 
@@ -247,7 +246,7 @@ var emojiPopper = $('[data-toggle="emojiPopper"]').emojiPopper({
 | animation | boolean | true | Apply a CSS fade transition to the popover |
 | container | string / element / false | false | Appends the popover to a specific element. Example: `container: 'body'`. This option is particularly useful in that it allows you to position the popover in the flow of the document near the triggering element - which will prevent the popover from floating away from the triggering element during a window resize. |
 | content | string / element / function | EmojoPopper Content | ~~Default content value if `data-content` attribute isn't present. <br>If a function is given, it will be called with its `this` reference set to the element that the popover is attached to~~<br>Fixed value. The content is defined by the EmojiPopper Plugin and currently can't be overwritten. |
-| delay | number / object | 0 | Delay showing and hiding the popover (ms) - does not apply to manual trigger type<br>If a number is supplied, delay is applied to both hide/show<br>Object structure is: `delay: { "show": 500, "hide": 100 }` |
+| delay | number / object | 0 | Delay showing and hiding the popover (ms) - does not apply to manual trigger type.<br>If a number is supplied, delay is applied to both hide/show<br>Object structure is: `delay: { "show": 500, "hide": 100 }` |
 | html | boolean | ~~false~~ true | ~~Insert HTML into the popover. If false, `innerText` property will be used to insert content into the DOM. Use text if you're worried about XSS attacks.~~<br>The EmojiPopper plugin's content contains HTML. The value of this option is fixed to true. |
 | placement | string / function | 'right' | How to position the popover - auto / top / bottom / left / right.<br>When `auto` is specified, it will dynamically reorient the popover.<br>When a function is used to determine the placement, it is called with the popover DOM node as its first argument and the triggering element DOM node as its second. The `this` context is set to the popover instance.|
 | selector | string / false | false | If a selector is provided, popover objects will be delegated to the specified targets. In practice, this is used to enable dynamic HTML content to have popovers added. See <a href="https://github.com/twbs/bootstrap/issues/4215">this</a> and <a href="https://codepen.io/Johann-S/pen/djJYPb">an informative example</a>.|
